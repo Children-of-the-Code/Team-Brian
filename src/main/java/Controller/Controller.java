@@ -19,4 +19,7 @@ public class Controller {
     public User getUserByUsername(String username) {
         return service.getUserByUsername(username);
     }
+    public User getUserByBirthday(int birthday) {
+        return service.getUserByBirthday(birthday);
+    }
 }

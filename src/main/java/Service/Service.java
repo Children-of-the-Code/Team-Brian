@@ -8,12 +8,13 @@ public class Service {
     public List<User> getAllUsers() {
         return null;
     }
-
     public User getUserById(int id) {
         return null;
     }
-
     public User getUserByUsername(String username) {
+        return null;
+    }
+    public User getUserByBirthday(int birthday) {
         return null;
     }
 }
