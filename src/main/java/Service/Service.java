@@ -1,20 +1,32 @@
 package Service;
 
+import DAO.UserDAO;
 import Model.User;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Component;
 
 import java.util.List;
 
+@Component
 public class Service {
-    public static List<User> getAllUsers() {
-        return Service.getAllUsers();
+
+    UserDAO userDAO;
+
+    @Autowired
+    public Service(UserDAO userDAO){
+        this.userDAO = userDAO;
     }
-    public static User getUserById(int id) {
-        return Service.getUserById(id);
+
+    public List<User> getAllUsers() {
+        return userDAO.getAllUsers();
     }
-    public static User getUserByUsername(String username) {
-        return Service.getUserByUsername(username);
+    public User getUserById(int id) {
+        return userDAO.getUserById(id);
     }
-    public static User getUserByName(String name) {
-        return Service.getUserByName(name);
+    public User getUserByUsername(String username) {
+        return userDAO.getUserByUsername(username);
+    }
+    public User getUserByName(String name) {
+        return userDAO.getUserByName(name);
     }
 }
