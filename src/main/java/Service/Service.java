@@ -14,7 +14,7 @@ public class Service {
     public User getUserByUsername(String username) {
         return null;
     }
-    public User getUserByBirthday(int birthday) {
+    public User getUserByName(String name) {
         return null;
     }
 }
