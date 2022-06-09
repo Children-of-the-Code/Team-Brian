@@ -5,16 +5,16 @@ import Model.User;
 import java.util.List;
 
 public class Service {
-    public List<User> getAllUsers() {
-        return null;
+    public static List<User> getAllUsers() {
+        return Service.getAllUsers();
     }
-    public User getUserById(int id) {
-        return null;
+    public static User getUserById(int id) {
+        return Service.getUserById(id);
     }
-    public User getUserByUsername(String username) {
-        return null;
+    public static User getUserByUsername(String username) {
+        return Service.getUserByUsername(username);
     }
-    public User getUserByName(String name) {
-        return null;
+    public static User getUserByName(String name) {
+        return Service.getUserByName(name);
     }
 }
