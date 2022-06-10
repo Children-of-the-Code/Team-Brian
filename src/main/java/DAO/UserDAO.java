@@ -8,16 +8,12 @@ import org.springframework.data.repository.query.Param;
 import java.util.List;
 
 public interface UserDAO extends JpaRepository<User, Integer> {
-
-    @Query("FROM User where username = :username")
+    @Query("FROM User WHERE username = :username")
     User getUserByUsername(@Param("username") String username);
-
-    @Query("FROM User where name = :name")
-    User getUserByName(@Param("name") String name);
-
-    @Query("FROM User where id = :id")
+    @Query("FROM User WHERE firstName = :firstName")
+    User getUserByName(@Param("firstName") String firstName);
+    @Query("FROM User WHERE id = :id")
     User getUserById(@Param("id") int id);
-
     @Query("FROM User")
     List<User> getAllUsers();
 }
