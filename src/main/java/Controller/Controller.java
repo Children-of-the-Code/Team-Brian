@@ -1,10 +1,9 @@
 package Controller;
 
+import DAO.UserDAO;
 import Model.User;
 import Service.Service;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.boot.autoconfigure.security.oauth2.client.OAuth2ClientProperties;
-import org.springframework.boot.autoconfigure.security.saml2.Saml2RelyingPartyProperties;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -13,6 +12,7 @@ import java.util.List;
 @RequestMapping("Users")
 public class Controller {
     Service service;
+    UserDAO userDAO;
     @Autowired
     public Controller(Service service) {
         this.service = service;
@@ -21,20 +21,17 @@ public class Controller {
     public User registration(@RequestParam String firstName, String lastName, String username, String password){
         return service.registration(firstName, lastName, username, password );
     }
-
     @GetMapping("login")
     public User login(@PathVariable String username, String password){
         return service.login(username, password );
     }
-
     @PostMapping("post")
     public User createPost(@PathVariable String post){
         return service.createPost(post);
     }
-
     @GetMapping("")
     public List<User> getAllUsers() {
-        return service.getAllUsers();
+        return userDAO.getAllUsers();
     }
     @GetMapping("id/{id}")
     public User getUserById(@PathVariable int id) {
@@ -52,13 +49,11 @@ public class Controller {
     public User getUserByPost (@PathVariable String post){
         return service.getUserByPost(post);
     }
-
     @PostMapping("comment")
     public User postComment (@PathVariable String comment){
         return service.postComment(comment);
     }
-
-    @GetMapping("commentexists/{username}")
+    @GetMapping("commentExists/{username}")
     public boolean checkCommentExistsByUsername(@PathVariable String username){
         return service.checkCommentExistsByUsername( username );
     }
