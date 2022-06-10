@@ -3,10 +3,9 @@ package Controller;
 import Model.User;
 import Service.Service;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.boot.autoconfigure.security.oauth2.client.OAuth2ClientProperties;
+import org.springframework.boot.autoconfigure.security.saml2.Saml2RelyingPartyProperties;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
@@ -18,21 +17,49 @@ public class Controller {
     public Controller(Service service) {
         this.service = service;
     }
+    @GetMapping("register")
+    public User registration(@RequestParam String firstName, String lastName, String username, String password){
+        return service.registration(firstName, lastName, username, password );
+    }
+
+    @GetMapping("login")
+    public User login(@PathVariable String username, String password){
+        return service.login(username, password );
+    }
+
+    @PostMapping("post")
+    public User createPost(@PathVariable String post){
+        return service.createPost(post);
+    }
+
     @GetMapping("")
     public List<User> getAllUsers() {
         return service.getAllUsers();
     }
-    @GetMapping("{id}")
+    @GetMapping("id/{id}")
     public User getUserById(@PathVariable int id) {
         return service.getUserById(id);
     }
-    @GetMapping("{username}")
+    @GetMapping("username/{username}")
     public User getUserByUsername(@PathVariable String username) {
         return service.getUserByUsername(username);
     }
-    @GetMapping("{name}")
-    public User getUserByName (@PathVariable String name) {
-        return service.getUserByName(name);
+    @GetMapping("firstName/{firstName}")
+    public User getUserByName (@PathVariable String firstName) {
+        return service.getUserByName(firstName);
     }
-    //hey, this is my comment
+    @GetMapping("post/{post}")
+    public User getUserByPost (@PathVariable String post){
+        return service.getUserByPost(post);
+    }
+
+    @PostMapping("comment")
+    public User postComment (@PathVariable String comment){
+        return service.postComment(comment);
+    }
+
+    @GetMapping("commentexists/{username}")
+    public boolean checkCommentExistsByUsername(@PathVariable String username){
+        return service.checkCommentExistsByUsername( username );
+    }
 }
