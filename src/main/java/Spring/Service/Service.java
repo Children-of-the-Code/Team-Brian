@@ -2,6 +2,7 @@ package Spring.Service;
 
 import Spring.DAO.UserDAO;
 import Spring.Model.User;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
 import java.util.List;
@@ -21,6 +22,8 @@ public class Service {
     public Service(UserDAO userDAO){
         this.userDAO = userDAO;
     }
+
+    @Autowired
     public List<User> getAllUsers() {
         return userDAO.getAllUsers();
     }
@@ -33,11 +36,11 @@ public class Service {
     public User getUserByName(String name) {
         return userDAO.getUserByName(name);
     }
-    public static User getUserByPost(String post){
-        return Service.getUserByPost( post );
+    public User getUserByPost(String post){
+        return userDAO.getUserByPost(post);
     }
-    public static User postComment(String comment){
-        return Service.postComment( comment );
+    public User postComment(String comment){
+        return userDAO.postComment(comment);
     }
     public boolean checkCommentExistsByUsername(String username){
         if(username == null){

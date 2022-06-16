@@ -16,4 +16,8 @@ public interface UserDAO extends JpaRepository<User, Integer> {
     User getUserById(@Param("id") int id);
     @Query("FROM User")
     List<User> getAllUsers();
+    @Query
+    User getUserByPost(String post);
+    @Query
+    User postComment(String comment);
 }
