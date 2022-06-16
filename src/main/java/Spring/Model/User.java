@@ -1,4 +1,4 @@
-package Model;
+package Spring.Model;
 
 public class User {
     int id;

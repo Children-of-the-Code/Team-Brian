@@ -1,8 +1,8 @@
-package Controller;
+package Spring.Controller;
 
-import DAO.UserDAO;
-import Model.User;
-import Service.Service;
+import Spring.DAO.UserDAO;
+import Spring.Model.User;
+import Spring.Service.Service;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 

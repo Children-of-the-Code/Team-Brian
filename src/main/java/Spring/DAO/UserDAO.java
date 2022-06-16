@@ -1,6 +1,6 @@
-package DAO;
+package Spring.DAO;
 
-import Model.User;
+import Spring.Model.User;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.query.Param;
@@ -16,4 +16,8 @@ public interface UserDAO extends JpaRepository<User, Integer> {
     User getUserById(@Param("id") int id);
     @Query("FROM User")
     List<User> getAllUsers();
+    @Query
+    User getUserByPost(String post);
+    @Query
+    User postComment(String comment);
 }
