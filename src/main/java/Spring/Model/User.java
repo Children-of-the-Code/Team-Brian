@@ -1,9 +1,22 @@
 package Spring.Model;
 
+import lombok.AllArgsConstructor;
+import lombok.Data;
+import lombok.NoArgsConstructor;
+import lombok.ToString;
+
+import javax.persistence.*;
+
+@NoArgsConstructor
+@AllArgsConstructor
+@Data
+@ToString
+@Entity
 public class User {
-    int id;
-    String username;
-    String password;
-    String firstName;
-    String lastName;
+    @Id
+    @Column
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private int user_ID;
+    @Column
+    private String username;
 }
