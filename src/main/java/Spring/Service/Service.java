@@ -1,15 +1,14 @@
-package Service;
+package Spring.Service;
 
-import DAO.UserDAO;
-import Model.User;
-import org.springframework.beans.factory.annotation.Autowired;
+import Spring.DAO.UserDAO;
+import Spring.Model.User;
 import org.springframework.stereotype.Component;
 
 import java.util.List;
 
 @Component
 public class Service {
-    public static User registration(String firstName, String lastName, String username,String password ){
+    public static User registration(String firstName, String lastName, String username, String password ){
         return Service.registration( firstName, lastName, username, password );
     }
     public static User login(String username, String password){
