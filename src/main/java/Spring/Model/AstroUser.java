@@ -12,7 +12,7 @@ import javax.persistence.*;
 @Data
 @ToString
 @Entity
-public class User {
+public class AstroUser {
     @Id
     @Column
     @GeneratedValue(strategy = GenerationType.IDENTITY)

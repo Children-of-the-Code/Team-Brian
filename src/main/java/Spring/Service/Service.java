@@ -3,7 +3,7 @@ package Spring.Service;
 import Spring.DAO.CommentDAO;
 import Spring.DAO.PostDAO;
 import Spring.DAO.UserDAO;
-import Spring.Model.User;
+import Spring.Model.AstroUser;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
@@ -11,13 +11,13 @@ import java.util.List;
 
 @Component
 public class Service {
-    public static User registration(String firstName, String lastName, String username, String password ){
+    public static AstroUser registration(String firstName, String lastName, String username, String password ){
         return Service.registration( firstName, lastName, username, password );
     }
-    public static User login(String username, String password){
+    public static AstroUser login(String username, String password){
         return Service.login( username, password );
     }
-    public static User createPost(String post){
+    public static AstroUser createPost(String post){
         return Service.createPost( post );
     }
     CommentDAO commentDAO;
@@ -28,22 +28,22 @@ public class Service {
     }
 
     @Autowired
-    public List<User> getAllUsers() {
+    public List<AstroUser> getAllUsers() {
         return userDAO.getAllUsers();
     }
-    public User getUserById(int id) {
+    public AstroUser getUserById(int id) {
         return userDAO.getUserById(id);
     }
-    public User getUserByUsername(String username) {
+    public AstroUser getUserByUsername(String username) {
         return userDAO.getUserByUsername(username);
     }
-    public User getUserByName(String name) {
+    public AstroUser getUserByName(String name) {
         return userDAO.getUserByName(name);
     }
-    public User getUserByPost(String post){
+    public AstroUser getUserByPost(String post){
         return postDAO.getUserByPost(post);
     }
-    public User postComment(String comment){
+    public AstroUser postComment(String comment){
         return commentDAO.postComment(comment);
     }
     public boolean checkCommentExistsByUsername(String username){

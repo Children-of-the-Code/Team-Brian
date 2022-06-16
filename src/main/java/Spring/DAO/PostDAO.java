@@ -1,9 +1,10 @@
 package Spring.DAO;
 
-import Spring.Model.User;
+import Spring.Model.AstroUser;
+import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
 
-public interface PostDAO {
-    @Query("FROM User WHERE post = :post")
-    User getUserByPost(String post);
+public interface PostDAO extends JpaRepository<AstroUser, String> {
+    @Query("FROM AstroUser WHERE post = :post")
+    AstroUser getUserByPost(String post);
 }

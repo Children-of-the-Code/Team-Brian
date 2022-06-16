@@ -1,19 +1,19 @@
 package Spring.DAO;
 
-import Spring.Model.User;
+import Spring.Model.AstroUser;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.query.Param;
 
 import java.util.List;
 
-public interface UserDAO extends JpaRepository<User, Integer> {
-    @Query("FROM User WHERE username = :username")
-    User getUserByUsername(@Param("username") String username);
-    @Query("FROM User WHERE firstName = :firstName")
-    User getUserByName(@Param("firstName") String firstName);
-    @Query("FROM User WHERE id = :id")
-    User getUserById(@Param("id") int id);
-    @Query("FROM User")
-    List<User> getAllUsers();
+public interface UserDAO extends JpaRepository<AstroUser, Integer> {
+    @Query("FROM AstroUser WHERE username = :username")
+    AstroUser getUserByUsername(@Param("username") String username);
+    @Query("FROM AstroUser WHERE firstName = :firstName")
+    AstroUser getUserByName(@Param("firstName") String firstName);
+    @Query("FROM AstroUser WHERE id = :id")
+    AstroUser getUserById(@Param("id") int id);
+    @Query("FROM AstroUser")
+    List<AstroUser> getAllUsers();
 }
