@@ -1,5 +1,7 @@
 package Spring.Service;
 
+import Spring.DAO.CommentDAO;
+import Spring.DAO.PostDAO;
 import Spring.DAO.UserDAO;
 import Spring.Model.User;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -18,6 +20,8 @@ public class Service {
     public static User createPost(String post){
         return Service.createPost( post );
     }
+    CommentDAO commentDAO;
+    PostDAO postDAO;
     UserDAO userDAO;
     public Service(UserDAO userDAO){
         this.userDAO = userDAO;
@@ -37,10 +41,10 @@ public class Service {
         return userDAO.getUserByName(name);
     }
     public User getUserByPost(String post){
-        return userDAO.getUserByPost(post);
+        return postDAO.getUserByPost(post);
     }
     public User postComment(String comment){
-        return userDAO.postComment(comment);
+        return commentDAO.postComment(comment);
     }
     public boolean checkCommentExistsByUsername(String username){
         if(username == null){
