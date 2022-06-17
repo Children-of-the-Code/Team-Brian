@@ -2,7 +2,7 @@ package Spring.Service;
 
 import Spring.DAO.CommentDAO;
 import Spring.DAO.PostDAO;
-import Spring.DAO.UserDAO;
+import Spring.DAO.AstroUserDAO;
 import Spring.Model.AstroUser;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
@@ -22,23 +22,23 @@ public class Service {
     }
     CommentDAO commentDAO;
     PostDAO postDAO;
-    UserDAO userDAO;
-    public Service(UserDAO userDAO){
-        this.userDAO = userDAO;
+    AstroUserDAO astroUserDAO;
+    public Service(AstroUserDAO astroUserDAO){
+        this.astroUserDAO = astroUserDAO;
     }
 
     @Autowired
     public List<AstroUser> getAllUsers() {
-        return userDAO.getAllUsers();
+        return astroUserDAO.getAllUsers();
     }
     public AstroUser getUserById(int id) {
-        return userDAO.getUserById(id);
+        return astroUserDAO.getUserById(id);
     }
     public AstroUser getUserByUsername(String username) {
-        return userDAO.getUserByUsername(username);
+        return astroUserDAO.getUserByUsername(username);
     }
     public AstroUser getUserByName(String name) {
-        return userDAO.getUserByName(name);
+        return astroUserDAO.getUserByName(name);
     }
     public AstroUser getUserByPost(String post){
         return postDAO.getUserByPost(post);
