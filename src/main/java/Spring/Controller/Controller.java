@@ -9,7 +9,7 @@ import java.util.List;
 import java.util.Map;
 
 @RestController
-@RequestMapping("astroUsers")
+@RequestMapping("astroUser")
 public class Controller {
     AstroUserService astroUserService;
     @Autowired
