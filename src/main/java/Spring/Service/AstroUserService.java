@@ -27,7 +27,6 @@ public class AstroUserService {
     public static AstroUser createPost(String post){
         return AstroUserService.createPost(post);
     }
-
     public AstroUserService(AstroUserDAO astroUserDAO){
         this.astroUserDAO = astroUserDAO;
     }
