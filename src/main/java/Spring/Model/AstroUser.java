@@ -14,19 +14,22 @@ import java.util.List;
 @Data
 @ToString
 @Entity
+@Table(name = "astroUsers")
 public class AstroUser {
     @Id
     @Column
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int astroUser_ID;
     @Column
-    private String username;
-    @Column
-    private String password;
-    @Column
     private String firstName;
     @Column
     private String lastName;
+    @Column(unique = true)
+    private String email;
+    @Column(unique = true)
+    private String username;
+    @Column
+    private String password;
     @OneToMany
     @JoinColumn(name = "comment_ID")
     @JsonIgnoreProperties(value = {"astroUser"})
