@@ -17,8 +17,8 @@ public class Controller {
         this.astroUserService = astroUserService;
     }
     @PostMapping("register")
-    public AstroUser registration(@RequestBody String firstName, String lastName, String email, String username, String password){
-        return astroUserService.registration(firstName, lastName, email, username, password);
+    public void registration(@RequestBody AstroUser astroUser){
+        astroUserService.registration(astroUser);
     }
     @PostMapping("login")
     public AstroUser login(@RequestBody Map<String, Object> dto){
@@ -43,6 +43,10 @@ public class Controller {
     @GetMapping("astroUser/{firstName}")
     public AstroUser getUserByName (@PathVariable String firstName) {
         return astroUserService.getUserByName(firstName);
+    }
+    @GetMapping("astroUser/{email}")
+    public AstroUser getUserByEmail (@PathVariable String email) {
+        return astroUserService.getUserByEmail(email);
     }
     @GetMapping("astroUser/{post}")
     public AstroUser getUserByPost (@PathVariable String post){

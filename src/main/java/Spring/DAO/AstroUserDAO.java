@@ -8,12 +8,16 @@ import org.springframework.data.repository.query.Param;
 import java.util.List;
 
 public interface AstroUserDAO extends JpaRepository<AstroUser, Integer> {
+    @Query("FROM AstroUser WHERE username = :username and password = :password")
+    AstroUser login(@Param("username")String username, @Param("password") String password);
+    @Query("FROM AstroUser WHERE id = :id")
+    AstroUser getUserById(@Param("id") int id);
     @Query("FROM AstroUser WHERE username = :username")
     AstroUser getUserByUsername(@Param("username") String username);
     @Query("FROM AstroUser WHERE firstName = :firstName")
     AstroUser getUserByName(@Param("firstName") String firstName);
-    @Query("FROM AstroUser WHERE id = :id")
-    AstroUser getUserById(@Param("id") int id);
+    @Query("FROM AstroUser WHERE email = :email")
+    AstroUser getUserByEmail(String email);
     @Query("FROM AstroUser")
     List<AstroUser> getAllUsers();
 }

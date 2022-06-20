@@ -18,11 +18,20 @@ public class AstroUserService {
     public List<AstroUser> getAllUsers() {
         return astroUserDAO.getAllUsers();
     }
-    public static AstroUser registration(String firstName, String lastName, String email, String username, String password ){
-        return AstroUserService.registration( firstName, lastName, email, username, password);
+    public void registration(AstroUser astroUser){
+        String username = astroUser.getUsername();
+        AstroUser temp = astroUserDAO.getUserByUsername(username);
+        if(temp == null) {
+            astroUserDAO.save(astroUser);
+        }
     }
-    public static AstroUser login(String username, String password){
-        return AstroUserService.login(username, password);
+    public AstroUser login(String username, String password){
+        AstroUser astroUser = astroUserDAO.login(username, password);
+        if(astroUser != null) {
+            return astroUser;
+        } else {
+            return null;
+        }
     }
     public static AstroUser createPost(String post){
         return AstroUserService.createPost(post);
@@ -36,8 +45,11 @@ public class AstroUserService {
     public AstroUser getUserByUsername(String username) {
         return astroUserDAO.getUserByUsername(username);
     }
-    public AstroUser getUserByName(String name) {
-        return astroUserDAO.getUserByName(name);
+    public AstroUser getUserByName(String firstName) {
+        return astroUserDAO.getUserByName(firstName);
+    }
+    public AstroUser getUserByEmail(String email) {
+        return astroUserDAO.getUserByEmail(email);
     }
     public AstroUser getUserByPost(String post){
         return postDAO.getUserByPost(post);
