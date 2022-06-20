@@ -14,15 +14,13 @@ import java.util.List;
 @Data
 @ToString
 @Entity
-public class AstroUser {
+public class Comment {
     @Id
     @Column
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private int astroUser_ID;
-    @Column
-    private String username;
-    @OneToMany
-    @JoinColumn(name = "comment_ID")
-    @JsonIgnoreProperties(value = {"astroUser"})
-    List<Comment> comments;
+    private int comment_ID;
+    @ManyToOne
+    @JoinColumn(name = "astroUser")
+    @JsonIgnoreProperties(value = {"comment"})
+    private AstroUser astroUser;
 }

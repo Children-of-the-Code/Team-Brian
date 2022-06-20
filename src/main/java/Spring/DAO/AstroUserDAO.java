@@ -7,7 +7,7 @@ import org.springframework.data.repository.query.Param;
 
 import java.util.List;
 
-public interface UserDAO extends JpaRepository<AstroUser, Integer> {
+public interface AstroUserDAO extends JpaRepository<AstroUser, Integer> {
     @Query("FROM AstroUser WHERE username = :username")
     AstroUser getUserByUsername(@Param("username") String username);
     @Query("FROM AstroUser WHERE firstName = :firstName")

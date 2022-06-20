@@ -1,6 +1,6 @@
 package Spring.Controller;
 
-import Spring.DAO.UserDAO;
+import Spring.DAO.AstroUserDAO;
 import Spring.Model.AstroUser;
 import Spring.Service.Service;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -12,7 +12,7 @@ import java.util.List;
 @RequestMapping("Users")
 public class Controller {
     Service service;
-    UserDAO userDAO;
+    AstroUserDAO astroUserDAO;
     @Autowired
     public Controller(Service service) {
         this.service = service;
@@ -31,7 +31,7 @@ public class Controller {
     }
     @GetMapping("")
     public List<AstroUser> getAllUsers() {
-        return userDAO.getAllUsers();
+        return astroUserDAO.getAllUsers();
     }
     @GetMapping("id/{id}")
     public AstroUser getUserById(@PathVariable int id) {

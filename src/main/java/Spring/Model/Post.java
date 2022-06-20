@@ -7,22 +7,19 @@ import lombok.NoArgsConstructor;
 import lombok.ToString;
 
 import javax.persistence.*;
-import java.util.List;
 
 @NoArgsConstructor
 @AllArgsConstructor
 @Data
 @ToString
 @Entity
-public class AstroUser {
+public class Post {
     @Id
     @Column
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private int astroUser_ID;
-    @Column
-    private String username;
-    @OneToMany
-    @JoinColumn(name = "comment_ID")
-    @JsonIgnoreProperties(value = {"astroUser"})
-    List<Comment> comments;
+    private int post_ID;
+    @ManyToOne
+    @JoinColumn(name = "astroUser")
+    @JsonIgnoreProperties(value = {"post"})
+    private AstroUser astroUser;
 }
