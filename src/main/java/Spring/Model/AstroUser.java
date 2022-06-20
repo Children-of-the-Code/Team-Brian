@@ -21,6 +21,12 @@ public class AstroUser {
     private int astroUser_ID;
     @Column
     private String username;
+    @Column
+    private String password;
+    @Column
+    private String firstName;
+    @Column
+    private String lastName;
     @OneToMany
     @JoinColumn(name = "comment_ID")
     @JsonIgnoreProperties(value = {"astroUser"})
