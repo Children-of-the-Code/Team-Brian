@@ -1,60 +1,59 @@
 package Spring.Controller;
 
-import Spring.DAO.AstroUserDAO;
 import Spring.Model.AstroUser;
-import Spring.Service.Service;
+import Spring.Service.AstroUserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
+import java.util.Map;
 
 @RestController
-@RequestMapping("Users")
+@RequestMapping("astroUsers")
 public class Controller {
-    Service service;
-    AstroUserDAO astroUserDAO;
+    AstroUserService astroUserService;
     @Autowired
-    public Controller(Service service) {
-        this.service = service;
+    public Controller(AstroUserService astroUserService) {
+        this.astroUserService = astroUserService;
     }
-    @GetMapping("register")
-    public AstroUser registration(@RequestParam String firstName, String lastName, String username, String password){
-        return service.registration(firstName, lastName, username, password );
+    @PostMapping("register")
+    public AstroUser registration(@RequestBody String firstName, String lastName, String email, String username, String password){
+        return astroUserService.registration(firstName, lastName, email, username, password);
     }
-    @GetMapping("login")
-    public AstroUser login(@PathVariable String username, String password){
-        return service.login(username, password );
+    @PostMapping("login")
+    public AstroUser login(@RequestBody Map<String, Object> dto){
+        return astroUserService.login(dto.get("username").toString(),dto.get("password").toString());
     }
     @PostMapping("post")
     public AstroUser createPost(@PathVariable String post){
-        return service.createPost(post);
+        return astroUserService.createPost(post);
     }
-    @GetMapping("")
+    @GetMapping
     public List<AstroUser> getAllUsers() {
-        return astroUserDAO.getAllUsers();
+        return astroUserService.getAllUsers();
     }
-    @GetMapping("id/{id}")
+    @GetMapping("astroUser/{id}")
     public AstroUser getUserById(@PathVariable int id) {
-        return service.getUserById(id);
+        return astroUserService.getUserById(id);
     }
-    @GetMapping("username/{username}")
+    @GetMapping("astroUser/{username}")
     public AstroUser getUserByUsername(@PathVariable String username) {
-        return service.getUserByUsername(username);
+        return astroUserService.getUserByUsername(username);
     }
-    @GetMapping("firstName/{firstName}")
+    @GetMapping("astroUser/{firstName}")
     public AstroUser getUserByName (@PathVariable String firstName) {
-        return service.getUserByName(firstName);
+        return astroUserService.getUserByName(firstName);
     }
-    @GetMapping("post/{post}")
+    @GetMapping("astroUser/{post}")
     public AstroUser getUserByPost (@PathVariable String post){
-        return service.getUserByPost(post);
+        return astroUserService.getUserByPost(post);
     }
     @PostMapping("comment")
     public AstroUser postComment (@PathVariable String comment){
-        return service.postComment(comment);
+        return astroUserService.postComment(comment);
     }
     @GetMapping("commentExists/{username}")
     public boolean checkCommentExistsByUsername(@PathVariable String username){
-        return service.checkCommentExistsByUsername( username );
+        return astroUserService.checkCommentExistsByUsername( username );
     }
 }
