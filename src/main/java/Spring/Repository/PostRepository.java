@@ -6,5 +6,5 @@ import org.springframework.data.jpa.repository.Query;
 
 public interface PostRepository extends JpaRepository<AstroUser, String> {
     @Query("FROM AstroUser WHERE post = :post")
-    AstroUser getUserByPost(String post);
+    AstroUser createPost(String post);
 }

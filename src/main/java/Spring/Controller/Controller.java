@@ -2,6 +2,8 @@ package Spring.Controller;
 
 import Spring.Model.AstroUser;
 import Spring.Service.AstroUserService;
+import Spring.Service.CommentService;
+import Spring.Service.PostService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
@@ -12,7 +14,10 @@ import java.util.Map;
 @RequestMapping("astroUser")
 public class Controller {
     AstroUserService astroUserService;
+    CommentService commentService;
+    PostService postService;
     @Autowired
+    //AstroUserService
     public Controller(AstroUserService astroUserService) {
         this.astroUserService = astroUserService;
     }
@@ -23,14 +28,6 @@ public class Controller {
     @PostMapping("login")
     public AstroUser login(@RequestBody Map<String, Object> dto) {
         return astroUserService.login(dto.get("username").toString(),dto.get("password").toString());
-    }
-    @PostMapping("post")
-    public AstroUser createPost(@PathVariable String post) {
-        return astroUserService.createPost(post);
-    }
-    @PostMapping("comment")
-    public AstroUser postComment(@PathVariable String comment) {
-        return astroUserService.postComment(comment);
     }
     @GetMapping
     public List<AstroUser> getAllUsers() {
@@ -56,8 +53,22 @@ public class Controller {
     public AstroUser getUserByPost (@PathVariable String post) {
         return astroUserService.getUserByPost(post);
     }
+    //CommentService
+    @PostMapping("comment")
+    public AstroUser postComment(@PathVariable String comment) {
+        return commentService.postComment(comment);
+    }
     @GetMapping("commentExists/{username}")
-    public boolean checkCommentExistsByUsername(@PathVariable String username){
-        return astroUserService.checkCommentExistsByUsername( username );
+    public boolean checkCommentExistsByUser(@PathVariable String username) {
+        return commentService.checkCommentExistsByUser( username );
+    }
+    //PostService
+    @PostMapping("post")
+    public AstroUser createPost(@PathVariable String post) {
+        return postService.createPost(post);
+    }
+    @GetMapping("postExists/{username}")
+    public boolean checkPostExistsByUser(@PathVariable String username) {
+        return postService.checkPostExistsByUser(username);
     }
 }

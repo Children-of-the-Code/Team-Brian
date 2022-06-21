@@ -1,7 +1,5 @@
 package Spring.Service;
 
-import Spring.Repository.CommentRepository;
-import Spring.Repository.PostRepository;
 import Spring.Repository.AstroUserRepository;
 import Spring.Model.AstroUser;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -12,8 +10,6 @@ import java.util.List;
 @Component
 public class AstroUserService {
     AstroUserRepository astroUserRepository;
-    CommentRepository commentRepository;
-    PostRepository postRepository;
     @Autowired
     public AstroUserService(AstroUserRepository astroUserRepository) {
         this.astroUserRepository = astroUserRepository;
@@ -37,9 +33,6 @@ public class AstroUserService {
             return null;
         }
     }
-    public AstroUser createPost(String post) {
-        return astroUserRepository.createPost(post);
-    }
     public AstroUser getUserById(int id) {
         return astroUserRepository.getUserById(id);
     }
@@ -53,16 +46,6 @@ public class AstroUserService {
         return astroUserRepository.getUserByEmail(email);
     }
     public AstroUser getUserByPost(String post) {
-        return postRepository.getUserByPost(post);
-    }
-    public AstroUser postComment(String comment) {
-        return commentRepository.postComment(comment);
-    }
-    public boolean checkCommentExistsByUsername(String username) {
-        if(username == null){
-            return true;
-        }else{
-            return false;
-        }
+        return astroUserRepository.getUserByPost(post);
     }
 }

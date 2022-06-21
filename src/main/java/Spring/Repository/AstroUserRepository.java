@@ -21,5 +21,5 @@ public interface AstroUserRepository extends JpaRepository<AstroUser, Integer> {
     @Query("FROM AstroUser WHERE email = :email")
     AstroUser getUserByEmail(@Param("email")String email);
     @Query("FROM AstroUser WHERE post = :post")
-    AstroUser createPost(@Param("post")String post);
+    AstroUser getUserByPost(@Param("post")String post);
 }
