@@ -15,13 +15,13 @@ public class AstroUserService {
     CommentRepository commentRepository;
     PostRepository postRepository;
     @Autowired
-    public AstroUserService(AstroUserRepository astroUserRepository){
+    public AstroUserService(AstroUserRepository astroUserRepository) {
         this.astroUserRepository = astroUserRepository;
     }
     public List<AstroUser> getAllUsers() {
         return astroUserRepository.getAllUsers();
     }
-    public void registration(AstroUser astroUser){
+    public void registration(AstroUser astroUser) {
         String username = astroUser.getUsername();
         AstroUser temp = astroUserRepository.getUserByUsername(username);
         AstroUser temp2 = astroUserRepository.getUserByEmail(astroUser.getEmail());
@@ -29,7 +29,7 @@ public class AstroUserService {
             astroUserRepository.save(astroUser);
         }
     }
-    public AstroUser login(String username, String password){
+    public AstroUser login(String username, String password) {
         AstroUser astroUser = astroUserRepository.login(username, password);
         if(astroUser != null) {
             return astroUser;
