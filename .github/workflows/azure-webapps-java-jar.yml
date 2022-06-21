@@ -21,7 +21,7 @@ name: Build and deploy JAR app to Azure Web App
 
 env:
   AZURE_WEBAPP_NAME: AstroLounge    # set this to the name of your Azure Web App
-  JAVA_VERSION: '15'                  # set this to the Java version to use
+  JAVA_VERSION: '11'                  # set this to the Java version to use
 
 on:
   push:
